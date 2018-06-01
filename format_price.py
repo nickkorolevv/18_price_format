@@ -1,6 +1,7 @@
 import re
 import argparse
 
+
 pattern_letter = re.compile("([a-zA-Zа-яА-ЯёЁ']+)")
 
 
@@ -13,6 +14,7 @@ def format_price(price):
         char in "!#$%&'()*+-/:;<=>?@[\]^_`{|}~" for char in price
     ):
         raise ValueError("Данные символы не поддеживаются")
+    price = price.replace(",", ".")
     price = float(price)
     price = round(price, 2)
     if price.is_integer():
