@@ -22,6 +22,21 @@ class PriceFormatTest(unittest.TestCase):
         with self.assertRaises(TypeError):
             format_price(["123456789"])
 
+    def test_float_with_comma(self):
+        self.assertEqual(format_price("1111,1111"), "1 111.11")
+
+    def test_float_with_zeros(self):
+        self.assertEqual(format_price("12345.00"), "12 345")
+
+    def test_dict_incorrect(self):
+        with self.assertRaises(AttributeError):
+            format_price({"1": 2, "2": 3})
+
+    def test_incorrect_punctuation(self):
+        with self.assertRaises(ValueError):
+            format_price("!@#$%^&*()")
+
+
 
 if __name__ == "__main__":
     unittest.main()
