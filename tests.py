@@ -1,6 +1,7 @@
 import unittest
 from format_price import format_price
 
+
 class PriceFormatTest(unittest.TestCase):
     def test_int_value(self):
         self.assertEqual(format_price(123456678), "123 456 678")
@@ -15,27 +16,22 @@ class PriceFormatTest(unittest.TestCase):
         self.assertEqual(format_price("12345.6712"), "12 345.67")
 
     def test_incorrect_str(self):
-        with self.assertRaises(ValueError):
-            format_price("price")
+        self.assertEqual(format_price("price"), None)
+
+    def test_with_comma(self):
+        self.assertEqual(format_price(["111,111"]), None)
 
     def test_incorrect_type(self):
-        with self.assertRaises(TypeError):
-            format_price(["123456789"])
-
-    def test_float_with_comma(self):
-        self.assertEqual(format_price("1111,1111"), "1 111.11")
+        self.assertEqual(format_price(["123456789"]), None)
 
     def test_float_with_zeros(self):
         self.assertEqual(format_price("12345.00"), "12 345")
 
     def test_dict_incorrect(self):
-        with self.assertRaises(AttributeError):
-            format_price({"1": 2, "2": 3})
+        self.assertEqual(format_price({"1": 2, "2": 3}), None)
 
     def test_incorrect_punctuation(self):
-        with self.assertRaises(ValueError):
-            format_price("!@#$%^&*()")
-
+        self.assertEqual(format_price("!@#$%^&*()"), None)
 
 
 if __name__ == "__main__":

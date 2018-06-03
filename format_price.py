@@ -2,11 +2,13 @@ import argparse
 
 
 def format_price(price):
-    if "," in str(price):
-        price = price.replace(",", ".")
     try:
         float_price = float(price)
-    except TypeError and ValueError:
+    except ValueError:
+        return None
+    except TypeError:
+        return None
+    except AttributeError:
         return None
     round_price = round(float_price, 2)
     if round_price.is_integer():
@@ -18,8 +20,8 @@ def format_price(price):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("price")
-    parsargs = parser.parse_args()
-    price = parsargs.price
+    parsed_args = parser.parse_args()
+    price = parsed_args.price
     formated_price = format_price(price)
     if formated_price is None:
         exit("Данный тип не поддерживается")
