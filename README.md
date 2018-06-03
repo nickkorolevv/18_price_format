@@ -7,7 +7,7 @@
 # Быстрый старт
 В командной строке введите
 ``` bash 
-python format_price.py --price 3242234.23423424
+python format_price.py  3242234.23423424
 ```
 
 
