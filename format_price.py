@@ -2,13 +2,13 @@ import argparse
 
 
 def format_price(price):
+    if type(price)==bool:
+        return None
     try:
         float_price = float(price)
     except ValueError:
         return None
     except TypeError:
-        return None
-    except AttributeError:
         return None
     round_price = round(float_price, 2)
     if round_price.is_integer():

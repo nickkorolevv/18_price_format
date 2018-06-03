@@ -33,6 +33,9 @@ class PriceFormatTest(unittest.TestCase):
     def test_incorrect_punctuation(self):
         self.assertEqual(format_price("!@#$%^&*()"), None)
 
+    def test_boolean(self):
+        self.assertEqual(format_price(True), None)
+
 
 if __name__ == "__main__":
     unittest.main()
